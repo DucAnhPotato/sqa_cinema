@@ -5,6 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Auditorium Detail</title>
+    <style>
+        .is-seated {
+            background-color: rgba(231, 255, 2, 0.99);
+        }
+        .not-seated {
+            background-color: rgba(43, 238, 29, 0.99);
+        }
+
+        .board td {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .seat {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .seat td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #DDD;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content" class="container col-md-5 text-center mt-4">
@@ -16,8 +41,33 @@
         </div>
     </div>
 
-    <table class="table table-info mt-3">
+    <table class="board">
         <tbody>
+            <tr>
+                <td class="not-seated"></td>
+                <td>Available</td>
+            </tr>
+            <tr>
+                <td class="is-seated"></td>
+                <td>Occupied</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-info table-borderless mt-3 mb-5">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr>
                 <td></td>
                 <td></td>
@@ -33,19 +83,20 @@
         </tbody>
     </table>
 
-    <table class="table table-info mt-3">
+    <table class="seat">
         <tbody>
+<!--        th:if="${seats.size() gt (row * 10) + 2}"-->
             <tr th:each="row : ${#numbers.sequence(0, seats.size() div 10 - 1)}">
-                <td th:text="${seats.get(row * 10).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 1}" th:text="${seats.get((row * 10) + 1).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 2}" th:text="${seats.get((row * 10) + 2).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 3}" th:text="${seats.get((row * 10) + 3).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 4}" th:text="${seats.get((row * 10) + 4).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 5}" th:text="${seats.get((row * 10) + 5).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 6}" th:text="${seats.get((row * 10) + 6).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 7}" th:text="${seats.get((row * 10) + 7).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 8}" th:text="${seats.get((row * 10) + 8).id}" />
-                <td th:if="${seats.size() gt (row * 10) + 9}" th:text="${seats.get((row * 10) + 9).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get(row * 10).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 1).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 2).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 3).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 4).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 5).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 6).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 7).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 8).id}" />
+                <td th:class="${seats.get(row * 10).isSeated == 0} ? 'not-seated' : 'is-seated'" th:text="${seats.get((row * 10) + 9).id}" />
             </tr>
         </tbody>
     </table>
