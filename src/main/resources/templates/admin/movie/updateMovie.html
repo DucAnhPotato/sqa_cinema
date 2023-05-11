@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Movie</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form th:action="'/admin/movies/save'" th:object="${movie}" method="post">
+                <h2 class="text-center text-primary">UPDATE MOVIE</h2>
+                <fieldset class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" type="text" th:field="*{name}">
+                </fieldset>
+                <fieldset>
+                    <label>Rating</label>
+                    <input class="form-control" type="number" th:field="*{rating}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Image</label>
+                    <input class="form-control" type="text" th:field="*{imageURL}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Category</label>
+                    <input class="form-control" type="text" th:field="*{category}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Description</label>
+                    <input class="form-control" type="text" th:field="*{description}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Length</label>
+                    <input class="form-control" type="number" th:field="*{length}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Director</label>
+                    <input class="form-control" type="text" th:field="*{director}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Actor</label>
+                    <input class="form-control" type="text" th:field="*{actor}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Trailer</label>
+                    <input class="form-control" type="text" th:field="*{trailerURL}">
+                </fieldset>
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="col text-center mt-3">
+                    <button type="submit" class="btn btn-success">UPDATE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

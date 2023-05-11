@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Detail</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 text-center mt-4">
+    <h2 class="text text-primary mb-4">MOVIE DETAIL</h2>
+    <div class="row bg-light">
+        <div class="col">
+            <img th:src="${movie.imageURL}" width="200" height="300">
+        </div>
+        <div class="col">
+            <h1 class="text-success" th:text="${movie.name}" />
+            <h3 th:text="'Rating: ' + ${movie.rating}"/>
+            <h3 th:text="'Category: ' + ${movie.category}"/>
+            <h3 th:text="'Description: ' + ${movie.description}"/>
+            <h3 th:text="'Length: ' + ${movie.length}"/>
+            <h3 th:text="'Director: ' + ${movie.director}"/>
+            <h3 th:text="'Actor: ' + ${movie.actor}"/>
+            <iframe width="560" height="315" th:src="@{'https://www.youtube.com/embed/' + ${movie.trailerURL}}" allowfullscreen></iframe>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

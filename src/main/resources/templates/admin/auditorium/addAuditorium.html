@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Auditorium</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form th:action="'/admin/auditoriums/save'" th:object="${auditorium}" method="post">
+                <h2 class="text-center text-primary">ADD AUDITORIUM</h2>
+                <fieldset>
+                    <label>No. seat</label>
+                    <input class="form-control" type="number" th:field="*{seatCount}">
+                </fieldset>
+
+                <div class="col text-center mt-3">
+                    <button type="submit" class="btn btn-success">ADD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

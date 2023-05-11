@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket List</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-6 text-center mt-4">
+    <h2 class="text text-primary">TICKET LIST</h2>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Booking ID</th>
+            <th>Schedule ID</th>
+            <th>Seat No.</th>
+            <th>More</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}" />
+            <td>
+                <a th:text="${ticket.booking.id}"/>
+            </td>
+            <td>
+                <a th:text="${ticket.schedule.id}"/>
+            </td>
+            <td>
+                <a th:text="${ticket.seat.id}"/>
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a th:href="'/admin/tickets/' + ${ticket.id}" type="button" class="btn btn-primary">DETAIL</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+

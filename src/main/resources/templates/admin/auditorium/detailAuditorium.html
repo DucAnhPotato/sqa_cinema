@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Auditorium Detail</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 text-center mt-4">
+    <h2 class="text text-primary mb-4">AUDITORIUM DETAIL</h2>
+    <div class="row bg-light">
+        <div class="col">
+            <h1 class="text-success" th:text="'Room: ' + ${auditorium.id}" />
+            <h3 th:text="'No. seat: ' + ${auditorium.seatCount}"/>
+        </div>
+    </div>
+
+    <table class="table table-info mt-3">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-info mt-3">
+        <tbody>
+            <tr th:each="row : ${#numbers.sequence(0, seats.size() div 10 - 1)}">
+                <td th:text="${seats.get(row * 10).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 1}" th:text="${seats.get((row * 10) + 1).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 2}" th:text="${seats.get((row * 10) + 2).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 3}" th:text="${seats.get((row * 10) + 3).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 4}" th:text="${seats.get((row * 10) + 4).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 5}" th:text="${seats.get((row * 10) + 5).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 6}" th:text="${seats.get((row * 10) + 6).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 7}" th:text="${seats.get((row * 10) + 7).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 8}" th:text="${seats.get((row * 10) + 8).id}" />
+                <td th:if="${seats.size() gt (row * 10) + 9}" th:text="${seats.get((row * 10) + 9).id}" />
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

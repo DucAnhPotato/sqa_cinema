@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking List</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-8 text-center mt-4">
+    <h2 class="text text-primary">BOOKING LIST</h2>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.id}" />
+            <td>
+                <a th:text="${booking.user.username}"/>
+            </td>
+            <td>
+                <a th:text="${booking.bookingDate}"/>
+            </td>
+            <td>
+                <a th:text="${booking.bookingTime}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Detail</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 text-center mt-4">
+    <h2 class="text text-primary mb-4">REVIEW DETAIL</h2>
+    <div class="row bg-light">
+        <div class="col">
+            <img th:src="${review.movie.imageURL}" width="200" height="300">
+        </div>
+        <div class="col">
+            <h1 class="text-success" th:text="${review.movie.name}" />
+            <h3 th:text="'Username: ' + ${review.user.username}"/>
+            <h3 th:text="'Description: ' + ${review.description}"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
