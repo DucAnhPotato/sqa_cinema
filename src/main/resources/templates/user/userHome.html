@@ -1,13 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" layout:decorate="/user/_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>User home</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="container col-md-5 text-center mt-4">
-  <h2 class="text text-primary mb-4">USER HOME</h2>
-</div>
+<section layout:fragment="content" class="p-5">
+
+    <h2 class="text-center text-dark py-5">SEE YOUR FAVORITE MOVIE AT SICKDUCK</h2>
+    <p class="text-center text-dark col-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, eveniet iste itaque iusto maxime nemo nostrum praesentium sit.</p>
+
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col text-dark text-start">
+                <h3 th:text="'POPULAR MOVIES'"></h3>
+            </div>
+            <div class="col text-primary text-end">
+                <a th:href="'/user/movie'" th:text="'See all'"></a>
+            </div>
+        </div>
+
+        <div class="row text-start">
+            <div th:each="movie : ${popMovies}" class="col-3">
+                <div class="card movie-hover text-dark">
+                    <a th:href="'/user/movie/' + ${movie.id}">
+                        <img th:src="${movie.imageURL}" width="200" height="400" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 th:text="${movie.name}" class="card-title"></h5>
+                        <p th:text="${movie.length} + ' phut'"/>
+                        <div class="search-right text-center">
+                            <a th:text="'BOOK NOW'" th:href="'/user/home'" class="btn search-hny my-2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col text-dark text-start">
+                <h3 th:text="'NEW RELEASES'"></h3>
+            </div>
+            <div class="col text-primary text-end">
+                <a th:href="'/user/movie'" th:text="'See all'"></a>
+            </div>
+        </div>
+
+        <div class="row text-start">
+            <div th:each="movie : ${newMovies}" class="col-3">
+                <div class="card movie-hover text-dark">
+                    <a th:href="'/user/movie/' + ${movie.id}">
+                        <img th:src="${movie.imageURL}" width="200" height="400" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h5 th:text="${movie.name}" class="card-title"></h5>
+                        <p th:text="${movie.length} + ' phut'"/>
+                        <div class="search-right text-center">
+                            <a th:text="'BOOK NOW'" th:href="'/user/home'" class="btn search-hny my-2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 </body>
 </html>

@@ -5,26 +5,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Detail</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div layout:fragment="content" class="container col-md-5 text-center mt-4">
-    <h2 class="text text-primary mb-4">MOVIE DETAIL</h2>
-    <div class="row bg-light">
-        <div class="col">
-            <img th:src="${movie.imageURL}" width="200" height="300">
-        </div>
-        <div class="col">
-            <h1 class="text-success" th:text="${movie.name}" />
-            <h3 th:text="'Rating: ' + ${movie.rating}"/>
-            <h3 th:text="'Category: ' + ${movie.category}"/>
-            <h3 th:text="'Description: ' + ${movie.description}"/>
-            <h3 th:text="'Length: ' + ${movie.length}"/>
-            <h3 th:text="'Director: ' + ${movie.director}"/>
-            <h3 th:text="'Actor: ' + ${movie.actor}"/>
-            <iframe width="560" height="315" th:src="@{'https://www.youtube.com/embed/' + ${movie.trailerURL}}" allowfullscreen></iframe>
-
+<section layout:fragment="content" class="p-5">
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col-3">
+                <img th:src="${movie.imageURL}" width="250" height="400"/>
+            </div>
+            <div class="col-9 text-dark text-start">
+                <h3 class="py-3" th:text="${movie.name}"/>
+                <p class="py-3" th:text="${movie.description}"/>
+                <table class="table-sm table-borderless">
+                    <tbody>
+                    <tr>
+                        <th class="col-3">Rating:</th>
+                        <td class="col-9"><span th:text="${movie.rating}"></span><span aria-hidden="true" class="fa fa-star icon-log ml-2"></span></td>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Director:</th>
+                        <td class="col-9" th:text="${movie.director}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Actor:</th>
+                        <td class="col-9" th:text="${movie.actor}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Category:</th>
+                        <td class="col-9" th:text="${movie.category}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Length:</th>
+                        <td class="col-9" th:text="${movie.length} + ' phut'"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <iframe width="1400" height="838" th:src="${movie.trailerURL}" allowfullscreen></iframe>
+    </div>
+</section>
 </body>
 </html>

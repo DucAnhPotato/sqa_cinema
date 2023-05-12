@@ -28,4 +28,8 @@ public class MovieService {
     public void deleteMovieById(Long id) {
         movieRepository.deleteById(id);
     }
+
+    public List<Movie> get4Movies(Long idStart, Long idEnd) {
+        return movieRepository.findMoviesByIdBetween(idStart, idEnd);
+    }
 }
