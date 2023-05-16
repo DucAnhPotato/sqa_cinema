@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/user/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Booking</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .inline {
+            display: inline;
+        }
+
+        .is-seated {
+            background-color: rgba(253, 253, 253, 0.99);
+        }
+
+        .not-seated {
+            background-color: rgba(43, 238, 29, 0.99);
+        }
+
+        .selected {
+            background-color: #6b747c;
+        }
+
+        .seat {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .seat td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #DDD;
+        }
+
+        .board td {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    </style>
+
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            var checkboxes = $('input[type=checkbox][name=seat]');
+            var button = $('#continue');
+            checkboxes.change(function() {
+                if (checkboxes.filter(':checked').length > 0) {
+                    button.prop('disabled', false);
+                } else {
+                    button.prop('disabled', true);
+                }
+            });
+        });
+    </script>
+
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $('input[type=checkbox][name=seat]').change(function() {
+                var movieId = [[${movie.id}]];
+                var startDate = [[${schedule.date}]]
+                var startTime = [[${schedule.startTime}]]
+                var auditorium = [[${auditorium.id}]]
+                var selectedSeats = document.querySelectorAll('input[name="seat"]:checked');
+                var action = "/user/booking/success?movieId=" + movieId + "&startDate=" + startDate + "&startTime=" + startTime + "&auditorium=" + auditorium;
+                selectedSeats.forEach(function(seat) {
+                    action = action.concat("&seats=", seat.id);
+                });
+                $('form').attr('action', action);
+            });
+        });
+    </script>
+</head>
+<body>
+<section layout:fragment="content" class="p-5">
+    <div class="container my-5">
+        <h4 class="text-primary text-start py-3 inline" th:text="${movie.name}"/>
+        <p class="text-dark py-3 inline"> - Show timing selection - Seat selection</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 66%"></div>
+        </div>
+    </div>
+
+    <div class="container my-3 text-center text-dark">
+        <p th:text="'Price: ' + ${schedule.price} + 'd/seat'"/>
+    </div>
+
+    <div class="container my-5">
+        <form th:action="'/user/booking/success/__value__'" method="POST">
+            <table class="board">
+                <tbody>
+                <tr>
+                    <td class="not-seated"></td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td class="is-seated"></td>
+                    <td>Occupied</td>
+                </tr>
+                <tr>
+                    <td class="selected"></td>
+                    <td>Selected</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-info table-borderless mt-3 mb-5">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="seat">
+                <tbody>
+                <!--        th:if="${seats.size() gt (row * 10) + 2}"-->
+                <tr th:each="row : ${#numbers.sequence(0, seats.size() div 10 - 1)}">
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get(row * 10).id}"
+                               th:value="${seats.get(row * 10).id}" autocomplete="off">
+                        <label th:class="${seats.get(row * 10).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get(row * 10).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get(row * 10).id}"
+                               th:text="${seats.get(row * 10).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 1).id}"
+                               th:value="${seats.get((row * 10) + 1).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 1).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 1).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 1).id}"
+                               th:text="${seats.get((row * 10) + 1).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 2).id}"
+                               th:value="${seats.get((row * 10) + 2).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 2).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 2).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 2).id}"
+                               th:text="${seats.get((row * 10) + 2).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 3).id}"
+                               th:value="${seats.get((row * 10) + 3).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 3).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 3).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 3).id}"
+                               th:text="${seats.get((row * 10) + 3).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 4).id}"
+                               th:value="${seats.get((row * 10) + 4).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 4).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 4).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 4).id}"
+                               th:text="${seats.get((row * 10) + 4).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 5).id}"
+                               th:value="${seats.get((row * 10) + 5).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 5).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 5).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 5).id}"
+                               th:text="${seats.get((row * 10) + 5).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 6).id}"
+                               th:value="${seats.get((row * 10) + 6).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 6).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 6).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 6).id}"
+                               th:text="${seats.get((row * 10) + 6).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 7).id}"
+                               th:value="${seats.get((row * 10) + 7).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 7).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 7).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 7).id}"
+                               th:text="${seats.get((row * 10) + 7).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 8).id}"
+                               th:value="${seats.get((row * 10) + 8).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 8).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 8).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 8).id}"
+                               th:text="${seats.get((row * 10) + 8).id}" disabled></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="btn-check" name="seat"
+                               th:id="${seats.get((row * 10) + 9).id}"
+                               th:value="${seats.get((row * 10) + 9).id}" autocomplete="off">
+                        <label th:class="${seats.get((row * 10) + 9).isSeated == 0} ? 'btn btn-secondary not-seated' : 'btn is-seated'"
+                               th:classappend="${seats.get((row * 10) + 9).isSeated == 0} ? '': 'disabled'"
+                               th:for="${seats.get((row * 10) + 9).id}"
+                               th:text="${seats.get((row * 10) + 9).id}" disabled></label>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+            <div class="container my-5 text-end">
+                <a th:text="'Go back'" th:href="'/user/booking/movie/' + ${movie.id}" class="btn btn-dark"></a>
+                <button type="submit" value="submit" class="btn btn-outline-danger"
+                        id="continue" disabled>Continue</button>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+</body>
+</html>

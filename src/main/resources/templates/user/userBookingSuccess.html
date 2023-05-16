@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="/user/_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Booking</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700" rel="stylesheet">
+
+    <style>
+        .inline {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<section class="p-5" layout:fragment="content">
+    <div class="container my-5">
+        <h4 class="text-primary text-start py-3 inline" th:text="${schedule.movie.name}"/>
+        <p class="text-dark py-3 inline"> - Show timing selection - Seat selection - Booking confirm</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">Success</div>
+        </div>
+    </div>
+
+    <section id="ticket" class="container text-center" th:each="ticket : ${tickets}" >
+
+        <div class="ticket">
+            <div class="holes-top"></div>
+            <div class="title">
+                <p class="cinema">SICKDUCK</p>
+                <p class="movie-title" th:text="${ticket.schedule.movie.name}"></p>
+            </div>
+
+            <div>
+                <table class="info table table-borderless">
+                    <tr>
+                        <th>AUDITORIUM</th>
+                        <th>SEAT</th>
+                    </tr>
+                    <tr>
+                        <td class="bigger" th:text="${ticket.schedule.auditorium.id}"></td>
+                        <td class="bigger" th:text="${ticket.seat.id}"></td>
+                    </tr>
+                </table>
+                <table class="info table table-borderless">
+                    <tr>
+                        <th>PRICE</th>
+                        <th>DATE</th>
+                        <th>TIME</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${ticket.schedule.price} + 'd'"></td>
+                        <td th:text="${ticket.schedule.date}"></td>
+                        <td th:text="${ticket.schedule.startTime}"></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- <div style="background-color: white;"> -->
+            <div class="holes-lower"></div>
+            <div class="serial">
+                <table class="barcode">
+                    <tr>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                        <td style="background-color:black;"></td>
+                        <td style="background-color:white;"></td>
+                    </tr>
+                </table>
+                <table class="numbers">
+                    <tr>
+                        <td>9</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>7</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="container search-right text-end my-3">
+        <a th:text="'Home'" th:href="'/user/home'" class="btn search-hny my-2"></a>
+    </div>
+
+</section>
+</body>
+</html>

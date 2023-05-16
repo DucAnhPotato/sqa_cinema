@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="/user/_layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<section layout:fragment="content" class="p-5">
+
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col text-dark text-start">
+                <h3 th:text="'Results from ' + ${result}"></h3>
+            </div>
+        </div>
+        <div class="row text-start">
+            <div th:each="movie : ${movies}" class="col-3">
+                <div class="card movie-hover text-dark mb-5">
+                    <a th:href="'/user/movie/' + ${movie.id}">
+                        <img th:src="${movie.imageURL}" width="200" height="400" class="card-img-top">
+                    </a>
+                    <div class="card-body p-2 m-2">
+                        <h5 th:text="${movie.name}" class="card-title"></h5>
+                        <div class="p-0 m-0">
+                            <p th:text="'Category: ' + ${movie.category}"/>
+                            <p th:text="'Length: ' + ${movie.length} + ' phut'"/>
+                        </div>
+                        <div class="search-right text-center">
+                            <a th:text="'BOOK NOW'" th:href="'/user/booking/movie/' + ${movie.id}" class="btn search-hny my-2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/user/_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Booking</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .inline {
+            display: inline;
+        }
+    </style>
+    <script>
+        function enableButton() {
+            document.getElementById('continue').removeAttribute('disabled');
+        }
+    </script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $('input[type=radio][name=option]').change(function() {
+                var value = $(this).val();
+                var action = "/user/booking/schedule/" + value;
+                $('form').attr('action', action);
+            });
+        });
+    </script>
+</head>
+<body>
+<section layout:fragment="content" class="p-5">
+    <div class="container my-5">
+        <h4 class="text-primary text-start py-3 inline" th:text="${movie.name}"/>
+        <p class="text-dark py-3 inline"> - Show timing selection</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 33%"></div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <form
+              th:action="'/user/booking/schedule/__value__'"
+              th:object="${schedules}" method="POST">
+            <div th:each="schedule : ${schedules}">
+                <input type="radio" class="btn-check" name="option"
+                       th:id="${schedule.id}" th:value="${schedule.id}"
+                       autocomplete="off">
+                <label class="btn btn-lg btn-outline-danger" onclick="enableButton()"
+                       th:for="${schedule.id}"
+                       th:text="${schedule.date} + ' - ' + ${schedule.startTime}"></label>
+            </div>
+            <div class="container my-5 text-end">
+                <button type="submit" value="submit" class="btn btn-outline-danger"
+                        id="continue" disabled>Continue</button>
+            </div>
+        </form>
+
+    </div>
+
+</section>
+</body>
+</html>
