@@ -20,7 +20,7 @@
             <th>ID</th>
             <th>Date</th>
             <th>Start Time</th>
-            <th>Price</th>
+            <th>Auditorium</th>
             <th>Movie</th>
             <th>More</th>
         </tr>
@@ -35,7 +35,7 @@
                 <a th:text="${schedule.startTime}"/>
             </td>
             <td>
-                <a th:text="${schedule.price}"/>
+                <a th:text="${schedule.auditorium.id}"/>
             </td>
             <td>
                 <a th:text="${schedule.movie.name}"/>

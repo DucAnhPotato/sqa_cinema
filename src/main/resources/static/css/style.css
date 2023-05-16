@@ -18,6 +18,154 @@ Author URL: http://w3layouts.com
     transition: transform 300ms;
 }
 
+#ticket .ticket-body {
+    background-color: var(--theme-bg);
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    /* font-weight: 600; */
+}
+
+#ticket .ticket {
+    width: 400px;
+    height: 500px;
+    background-color: rgb(243, 235, 235);
+    margin: 25px auto;
+    position: relative;
+}
+
+#ticket .holes-top {
+    height: 50px;
+    width: 50px;
+    background-color: var(--theme-bg);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    top: -25px;
+}
+
+#ticket .holes-top:before,
+#ticket .holes-top:after {
+    content: "";
+    height: 50px;
+    width: 50px;
+    background-color: var(--theme-bg);
+    position: absolute;
+    border-radius: 50%;
+}
+
+#ticket .holes-top:before {
+    left: -200px;
+}
+
+#ticket .holes-top:after {
+    left: 200px;
+}
+
+#ticket .holes-lower {
+    position: relative;
+    margin-right: 25px;
+    margin-left: 25px;
+    border: 1px dashed var(--theme-bg);
+}
+
+#ticket .holes-lower:before,
+#ticket .holes-lower:after {
+    content: "";
+    height: 50px;
+    width: 50px;
+    background-color: var(--theme-bg);
+    position: absolute;
+    border-radius: 50%;
+}
+
+#ticket .holes-lower:before {
+    top: -25px;
+    left: -50px;
+}
+
+#ticket .holes-lower:after {
+    top: -25px;
+    left: 350px;
+}
+
+#ticket .title {
+    padding: 50px 25px 10px;
+}
+
+#ticket .cinema {
+    color: rgb(63, 62, 62);
+    font-size: 1.5rem;
+}
+
+#ticket .movie-title {
+    font-size: 1.2rem;
+}
+
+#ticket .info {
+    padding: 15px 25px;
+}
+
+#ticket .ticket-table {
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#ticket .ticket-table tr {
+    margin-bottom: 10px;
+}
+
+#ticket .ticket-table th {
+    text-align: left;
+}
+
+#ticket .ticket-table th:nth-of-type(1) {
+    width: 38%;
+}
+
+#ticket .ticket-table th:nth-of-type(2) {
+    width: 40%;
+}
+
+#ticket .ticket-table th:nth-of-type(3) {
+    width: 15%;
+}
+
+#ticket .ticket-table td {
+    width: 33%;
+    font-size: 26px;
+}
+
+#ticket .info-table th {
+    color: rgb(63, 62, 62)
+}
+
+#ticket .bigger {
+    font-size: 40px;
+}
+
+#ticket .serial {
+    background-color: rgb(243, 235, 235);
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+#ticket .serial table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#ticket .serial td {
+    width: 3px;
+    height: 50px;
+}
+
+#ticket .numbers td {
+    font-size: 16px;
+    text-align: center;
+    color: rgb(63, 62, 62);
+}
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;

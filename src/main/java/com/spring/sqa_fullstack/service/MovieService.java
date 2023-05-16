@@ -32,4 +32,12 @@ public class MovieService {
     public List<Movie> get4Movies(Long idStart, Long idEnd) {
         return movieRepository.findMoviesByIdBetween(idStart, idEnd);
     }
+
+    public List<Movie> getMoviesByCategory(String category) {
+        return movieRepository.findMoviesByCategoryContaining(category);
+    }
+
+    public List<Movie> getMoviesByName(String name) {
+        return movieRepository.findAllByNameContaining(name);
+    }
 }

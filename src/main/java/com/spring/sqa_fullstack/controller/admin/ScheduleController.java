@@ -75,6 +75,8 @@ public class ScheduleController {
         if (result.hasErrors()) {
             if (id == null) {
                 return "admin/schedule/addSchedule";
+            } else {
+                return "admin/schedule/updateSchedule";
             }
         }
         schedule.setId(id);

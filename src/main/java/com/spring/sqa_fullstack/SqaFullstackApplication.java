@@ -1,8 +1,11 @@
 package com.spring.sqa_fullstack;
 
 import com.spring.sqa_fullstack.model.Role;
+import com.spring.sqa_fullstack.model.Seat;
 import com.spring.sqa_fullstack.model.User;
+import com.spring.sqa_fullstack.repository.SeatRepository;
 import com.spring.sqa_fullstack.repository.UserRepository;
+import com.spring.sqa_fullstack.service.SeatService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +17,8 @@ public class SqaFullstackApplication {
 
     @Autowired
     private UserRepository userRepository;
+
+
 
 //    @PostConstruct
     public void init() {

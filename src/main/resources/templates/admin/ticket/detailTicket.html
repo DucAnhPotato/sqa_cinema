@@ -7,25 +7,51 @@
     <title>Ticket Detail</title>
 </head>
 <body>
-<div layout:fragment="content" class="container col-md-5 text-center mt-4">
-    <h2 class="text text-primary mb-4">TICKET DETAIL</h2>
-    <div class="row bg-light">
-        <div class="col">
-            <img th:src="${ticket.schedule.movie.imageURL}" width="200" height="300">
-        </div>
-        <div class="col">
-            <h1 class="text-success" th:text="${ticket.schedule.movie.name}" />
-            <h1 class="text-success" th:text="${ticket.booking.user.username}" />
-            <h3 th:text="'Length: ' + ${ticket.schedule.movie.length}"/>
-            <h3 th:text="'Price: ' + ${ticket.schedule.price}"/>
-            <h3 th:text="'Seat: ' + ${ticket.seat.id}"/>
-            <h3 th:text="'Auditorium: ' + ${ticket.seat.auditorium.id}"/>
-            <h3 th:text="'Movie Date: ' + ${ticket.schedule.date}"/>
-            <h3 th:text="'Movie Start Time: ' + ${ticket.schedule.startTime}"/>
-            <h3 th:text="'Booking Date: ' + ${ticket.booking.bookingDate}"/>
-            <h3 th:text="'Booking Time: ' + ${ticket.booking.bookingTime}"/>
+<section layout:fragment="content" class="p-5">
+    <h2 class="text text-center text-primary mb-4">TICKET DETAIL</h2>
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col-3">
+                <img th:src="${ticket.schedule.movie.imageURL}" width="250" height="400"/>
+            </div>
+            <div class="col-9 text-dark text-start">
+                <h3 class="py-3" th:text="${ticket.schedule.movie.name}"/>
+                <h3 class="py-3" th:text="'User: ' + ${ticket.booking.user.username}"/>
+                <table class="table-sm table-borderless">
+                    <tbody>
+                    <tr>
+                        <th class="col-3">Movie Date:</th>
+                        <td class="col-9" th:text="${ticket.schedule.date}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Movie Time:</th>
+                        <td class="col-9" th:text="${ticket.schedule.startTime}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Price:</th>
+                        <td class="col-9" th:text="${ticket.schedule.price} + 'd'"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Seat:</th>
+                        <td class="col-9" th:text="${ticket.seat.id}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Room:</th>
+                        <td class="col-9" th:text="${ticket.schedule.auditorium.id}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Book Date:</th>
+                        <td class="col-9" th:text="${ticket.booking.bookingDate}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Book Time:</th>
+                        <td class="col-9" th:text="${ticket.booking.bookingTime}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 </html>

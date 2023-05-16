@@ -7,21 +7,39 @@
     <title>Schedule Detail</title>
 </head>
 <body>
-<div layout:fragment="content" class="container col-md-5 text-center mt-4">
-    <h2 class="text text-primary mb-4">SCHEDULE DETAIL</h2>
-    <div class="row bg-light">
-        <div class="col">
-            <img th:src="${schedule.movie.imageURL}" width="200" height="300">
-        </div>
-        <div class="col">
-            <h1 class="text-success" th:text="${schedule.movie.name}" />
-            <h3 th:text="'Auditorium: ' + ${schedule.auditorium.id}"/>
-            <h3 th:text="'Price: ' + ${schedule.price}"/>
-            <h3 th:text="'Date: ' + ${schedule.date}"/>
-            <h3 th:text="'Start Time: ' + ${schedule.startTime}"/>
-            <h3 th:text="'End Time: ' + ${schedule.endTime}"/>
+<section layout:fragment="content" class="p-5">
+    <h2 class="text text-center text-primary mb-4">SCHEDULE DETAIL</h2>
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col-3">
+                <img th:src="${schedule.movie.imageURL}" width="250" height="400"/>
+            </div>
+            <div class="col-9 text-dark text-start">
+                <h3 class="py-3" th:text="${schedule.movie.name}"/>
+                <h3 class="py-3" th:text="'Room: ' + ${schedule.auditorium.id}"/>
+                <table class="table-sm table-borderless">
+                    <tbody>
+                    <tr>
+                        <th class="col-3">Price:</th>
+                        <td class="col-9" th:text="${schedule.price}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Date:</th>
+                        <td class="col-9" th:text="${schedule.date}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">Start:</th>
+                        <td class="col-9" th:text="${schedule.startTime}"/>
+                    </tr>
+                    <tr>
+                        <th class="col-3">End:</th>
+                        <td class="col-9" th:text="${schedule.endTime}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 </html>

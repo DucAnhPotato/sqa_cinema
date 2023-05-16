@@ -6,6 +6,11 @@
     <meta charset="UTF-8">
     <title>Movie Detail</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        function sendText() {
+            alert('Review sent successfully!');
+        }
+    </script>
 </head>
 <body>
 <section layout:fragment="content" class="p-5">
@@ -45,7 +50,7 @@
         </div>
         <div class="row my-3">
             <div class="col-3 search-right text-center">
-                <a th:text="'BOOK NOW'" th:href="'/user/home'" class="btn search-hny my-2"></a>
+                <a th:text="'BOOK NOW'" th:href="'/user/booking/movie/' + ${movie.id}" class="btn search-hny my-2"></a>
             </div>
         </div>
     </div>
@@ -54,6 +59,17 @@
         <h3 class="text-center text-dark mt-5">WATCH TRAILER</h3>
         <iframe width="1400" height="838" th:src="${movie.trailerURL}" allowfullscreen></iframe>
     </div>
+
+    <form th:action="'user/movie/' + ${movie.id} + '/review/save'" method="POST">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <textarea class="form-control" name="inputText" id="inputText" placeholder="Send reviews" required rows="5"></textarea>
+                    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 my-2 mx-4" onclick="sendText()">Send</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </section>
 </body>
 </html>

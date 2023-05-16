@@ -13,6 +13,8 @@
       <form th:action="'/admin/schedules/save'" th:object="${schedule}" method="post">
         <h2 class="text-center text-primary">UPDATE SCHEDULE</h2>
 
+        <input type="hidden" th:field="*{id}">
+
         <fieldset class="form-group">
           <label>Date</label>
           <input class="form-control" type="date" th:field="*{date}">
@@ -47,10 +49,8 @@
           </select>
         </fieldset>
 
-        <input type="hidden" th:field="*{id}">
-
         <div class="col text-center mt-3">
-          <button type="submit" class="btn btn-success">ADD</button>
+          <button type="submit" class="btn btn-success">UPDATE</button>
         </div>
       </form>
     </div>

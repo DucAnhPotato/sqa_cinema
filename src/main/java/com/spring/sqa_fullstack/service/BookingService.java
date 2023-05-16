@@ -12,6 +12,10 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
+    public void saveBooking(Booking booking) {
+        bookingRepository.save(booking);
+    }
+
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
