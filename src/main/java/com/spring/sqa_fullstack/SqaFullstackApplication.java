@@ -19,7 +19,7 @@ public class SqaFullstackApplication {
     private UserRepository userRepository;
 
 
-
+//    run for the 1st time to initialize user and admin
 //    @PostConstruct
     public void init() {
         User admin = new User(),
@@ -37,6 +37,9 @@ public class SqaFullstackApplication {
     }
 
     public static void main(String[] args) {
+        // Spring Security login
+//        username: admin
+//        password: admin
         SpringApplication.run(SqaFullstackApplication.class, args);
     }
 
